@@ -23,3 +23,15 @@ const getSum = () => {
 
 // Add event listener to the button
 getSumBtn.addEventListener("click", getSum);
+describe('Grofers Checkout', () => {
+    it('Testcase 1: Check if prices are displayed', () => {
+        cy.visit('http://localhost:3000'); // Adjust the URL as needed
+        cy.get('.prices').should('have.length', 5); // Check if there are 5 price elements
+    });
+
+    it('Testcase 2: Check total price calculation', () => {
+        cy.visit('http://localhost:3000'); // Adjust the URL as needed
+        cy.get('#getSumBtn').click(); // Click the button to calculate total
+        cy.get('tr:last-child td').should('contain.text', 'Total Price: 400.00'); // Check if the total price is correct
+    });
+});
