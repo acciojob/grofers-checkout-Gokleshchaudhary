@@ -2,7 +2,7 @@ const getSumBtn = document.getElementById("getSumBtn");
 
 const getSum = () => {
     // Step 1: Select all price elements
-    const priceElements = document.querySelectorAll('.prices');
+    const priceElements = document.querySelectorAll('.prices'); // Use the correct class name
 
     // Step 2: Calculate total price
     let totalPrice = 0;
@@ -21,4 +21,5 @@ const getSum = () => {
     document.querySelector('table').appendChild(newRow); // Append to the table
 };
 
+// Add event listener to the button
 getSumBtn.addEventListener("click", getSum);
