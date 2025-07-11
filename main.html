@@ -4,10 +4,13 @@
   <meta charset="UTF-8">
   <title>Grofers Checkout</title>
   <style>
-    table, td, th {
+    table, th, td {
       border: 1px solid black;
       border-collapse: collapse;
       padding: 8px;
+    }
+    table {
+      margin-bottom: 20px;
     }
   </style>
 </head>
@@ -33,23 +36,35 @@
     </tr>
   </table>
 
+  <!-- ✅ Add this button to trigger total calculation -->
+  <button onclick="calculateTotal()">Calculate Total</button>
+
   <script>
-    const prices = document.querySelectorAll(".price");
-    let total = 0;
+    function calculateTotal() {
+      const prices = document.querySelectorAll(".price");
+      let total = 0;
 
-    prices.forEach(priceCell => {
-      total += parseFloat(priceCell.textContent);
-    });
+      prices.forEach(priceCell => {
+        total += parseFloat(priceCell.textContent);
+      });
 
-    const table = document.getElementById("grocery-table");
-    const totalRow = document.createElement("tr");
-    const totalCell = document.createElement("td");
+      const table = document.getElementById("grocery-table");
 
-    totalCell.colSpan = 2;
-    totalCell.textContent = `Total: ₹${total}`;
-    totalCell.style.fontWeight = "bold";
-    totalRow.appendChild(totalCell);
-    table.appendChild(totalRow);
+      // Remove existing total row if already present
+      const lastRow = table.rows[table.rows.length - 1];
+      if (lastRow && lastRow.cells[0].colSpan === 2) {
+        table.deleteRow(table.rows.length - 1);
+      }
+
+      const totalRow = document.createElement("tr");
+      const totalCell = document.createElement("td");
+
+      totalCell.colSpan = 2;
+      totalCell.textContent = `Total: ₹${total}`;
+      totalCell.style.fontWeight = "bold";
+      totalRow.appendChild(totalCell);
+      table.appendChild(totalRow);
+    }
   </script>
 
 </body>
