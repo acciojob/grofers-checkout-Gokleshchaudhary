@@ -1,41 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Grocery List</title>
+  <meta charset="UTF-8">
+  <title>Grofers Checkout</title>
+  <style>
+    table, td, th {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 8px;
+    }
+  </style>
 </head>
 <body>
-	<table style="width: 100%">
-    <caption>Monthly Savings</caption>
-    <tr>
-        <th>Item</th>
-        <th>Prices in Rs</th>
-    </tr>
-    <tr>
-        <td class="item">Tea</td>
-        <td class="prices">50</td>
-    </tr>
-    <tr>
-        <td class="item">Coffee</td>
-        <td class="prices">70</td>
-    </tr>
-    <tr>
-        <td class="item">Biscuits</td>
-        <td class="prices">100</td>
-    </tr>
-    <tr>
-        <td class="item">Rice</td>
-        <td class="prices">130</td>
-    </tr>
-    <tr>
-        <td class="item">Milk</td>
-        <td class="prices">50</td>
-    </tr>
-</table>
-    <button id="getSumBtn">Get Total Price</button>
 
-    <script src="script.js"></script>
+  <h2>Grocery List</h2>
+  <table id="grocery-table">
+    <tr>
+      <th>Item</th>
+      <th>Price</th>
+    </tr>
+    <tr class="item">
+      <td>Apples</td>
+      <td class="prices">50</td>
+    </tr>
+    <tr class="item">
+      <td>Bananas</td>
+      <td class="prices">30</td>
+    </tr>
+    <tr class="item">
+      <td>Milk</td>
+      <td class="prices">60</td>
+    </tr>
+  </table>
+
+  <script>
+    const prices = document.querySelectorAll(".prices");
+    let total = 0;
+
+    prices.forEach(priceCell => {
+      total += parseFloat(priceCell.textContent);
+    });
+
+    const table = document.getElementById("grocery-table");
+    const totalRow = document.createElement("tr");
+    const totalCell = document.createElement("td");
+
+    totalCell.colSpan = 2;
+    totalCell.textContent = `Total: ₹${total}`;
+    totalCell.style.fontWeight = "bold";
+    totalRow.appendChild(totalCell);
+    table.appendChild(totalRow);
+  </script>
+
 </body>
 </html>
